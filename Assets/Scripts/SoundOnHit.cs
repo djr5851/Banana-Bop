@@ -15,38 +15,19 @@ public class SoundOnHit : MonoBehaviour
     private SVControllerInput input;
     private AudioSource audioSource;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private void OnTriggerStay(){
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Hammer")
-        {
-            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-            Debug.Log(rb.velocity.sqrMagnitude);
+		if (Input.GetKey (KeyCode.E)) {
+             
+			audioSource = SVUtilities.SetOrAddAudioSource(gameObject);
+			audioSource.clip = soundOnHit;
 
-            if (soundOnHit && collision.gameObject.GetComponent<SVGrabHaptics>().inHand)
-            {
-                if (audioSource == null)
-                {
-                    audioSource = SVUtilities.SetOrAddAudioSource(gameObject);
-                    audioSource.clip = soundOnHit;
-                }
 
-                //audioSource.pitch = Random.Range(minPitch, maxPitch);
-                audioSource.volume = volume;
-                audioSource.Play();
-            }
-        }
-
+			//audioSource.pitch = Random.Range(minPitch, maxPitch);
+			audioSource.volume = volume;
+			audioSource.Play();
+				
+		}
     }
 }
