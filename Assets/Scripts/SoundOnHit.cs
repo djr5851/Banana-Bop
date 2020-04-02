@@ -11,7 +11,7 @@ public class SoundOnHit : MonoBehaviour
     public float volume = 1f;
 
     private bool inHand = false;
-    private SVGrabbable grabbable;
+    //private SVGrabbable grabbable;
     private SVControllerInput input;
     private AudioSource audioSource;
 
@@ -29,5 +29,16 @@ public class SoundOnHit : MonoBehaviour
 			audioSource.Play();
 				
 		}
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        audioSource = SVUtilities.SetOrAddAudioSource(gameObject);
+        audioSource.clip = soundOnHit;
+
+
+        //audioSource.pitch = Random.Range(minPitch, maxPitch);
+        audioSource.volume = volume;
+        audioSource.Play();
     }
 }
