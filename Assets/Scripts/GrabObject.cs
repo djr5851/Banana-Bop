@@ -40,6 +40,12 @@ public class GrabObject : MonoBehaviour
             Quaternion objRotation = Quaternion.Euler(objEuler);
             heldObject.transform.rotation = objRotation;
         }
+		else
+		{
+			heldObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+			itemGrabbable = false;
+			heldObject = null; 
+		}
     }
 
     void TryGrab()
@@ -49,14 +55,16 @@ public class GrabObject : MonoBehaviour
 
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
         {
-            if (hit.rigidbody && hit.rigidbody.gameObject.name == "hammer")
+            if (hit.rigidbody /*&& hit.rigidbody.gameObject.name == "hammer"*/)
             {
                 itemGrabbable = true;
+				heldObject = hit.transform.gameObject; 
             }
         }
         else
         {
             itemGrabbable = false;
+			heldObject = null; 
         }
     }
 }
