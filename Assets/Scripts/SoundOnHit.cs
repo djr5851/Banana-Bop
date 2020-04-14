@@ -9,6 +9,7 @@ public class SoundOnHit : MonoBehaviour
     public float minPitch = 0.8f;
     public float maxPitch = 1.2f;
     public float volume = 1f;
+	float nextSoundTime=0; // can't play sounds if before this time
 
     private bool inHand = false;
     //private SVGrabbable grabbable;
@@ -18,7 +19,7 @@ public class SoundOnHit : MonoBehaviour
 
     private void OnTriggerStay(){
 
-		if (Input.GetKey (KeyCode.E)) {
+		if (Input.GetKey (KeyCode.E) && Time.time>=nextSoundTime) {
              
 			audioSource = SVUtilities.SetOrAddAudioSource(gameObject);
 			audioSource.clip = soundOnHit;
@@ -27,18 +28,28 @@ public class SoundOnHit : MonoBehaviour
 			//audioSource.pitch = Random.Range(minPitch, maxPitch);
 			audioSource.volume = volume;
 			audioSource.Play();
+			
+			// write down when we will be finished:
+			nextSoundTime = Time.time + .15f;
+			//Debug.Log(soundOnHit.length);
 				
 		}
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        audioSource = SVUtilities.SetOrAddAudioSource(gameObject);
-        audioSource.clip = soundOnHit;
+		 // can't play if last one not finished:
+		if(Time.time>=nextSoundTime) {
+			audioSource = SVUtilities.SetOrAddAudioSource(gameObject);
+			audioSource.clip = soundOnHit;
 
-
-        //audioSource.pitch = Random.Range(minPitch, maxPitch);
-        audioSource.volume = volume;
-        audioSource.Play();
+			//audioSource.pitch = Random.Range(minPitch, maxPitch);
+			audioSource.volume = volume;
+			audioSource.Play();
+			
+			// write down when we will be finished:
+			nextSoundTime = Time.time + .15f;
+			//Debug.Log(soundOnHit.length);
+		}
     }
 }
