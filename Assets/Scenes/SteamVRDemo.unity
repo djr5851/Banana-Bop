@@ -1374,7 +1374,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &728277516
 Transform:
   m_ObjectHideFlags: 0
@@ -3171,9 +3171,11 @@ MonoBehaviour:
   rock: {fileID: 886666656}
   mallet: {fileID: 1701608302}
   xylophone: {fileID: 260020462}
+  drumset: {fileID: 728277515}
   timer: 0
   rockStartTime: 5
   xylophoneStartTime: 10
+  drumStartTime: 15
 --- !u!1 &1559014540
 GameObject:
   m_ObjectHideFlags: 0

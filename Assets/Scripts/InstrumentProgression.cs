@@ -8,9 +8,11 @@ public class InstrumentProgression : MonoBehaviour
     public GameObject rock;
     public GameObject mallet;
     public GameObject xylophone;
+	public GameObject drumset;
     public float timer;
     public float rockStartTime;
     public float xylophoneStartTime;
+	public float drumStartTime;
 
     void Start()
     {
@@ -30,6 +32,10 @@ public class InstrumentProgression : MonoBehaviour
         {
             mallet.SetActive(true);
             xylophone.SetActive(true);
+        }
+		if (timer >= drumStartTime)
+        {
+            drumset.SetActive(true);
         }
     }
 }
