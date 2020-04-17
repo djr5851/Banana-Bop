@@ -9,7 +9,7 @@ public class GrabObject : MonoBehaviour
     public float mPointHeight = 0.1f;
     public GameObject heldObject;
     int layerMask;
-    bool itemGrabbable;
+    bool objectGrabbable;
     bool isHolding;
 
     private void Start()
@@ -18,10 +18,13 @@ public class GrabObject : MonoBehaviour
         layerMask = ~layerMask;
         isHolding = false;
     }
-    void FixedUpdate()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0)) TryGrab();
-        if (itemGrabbable && Input.GetMouseButton(0))
+    }
+    void FixedUpdate()
+    {
+        if (objectGrabbable && Input.GetMouseButton(0))
         {
             if (heldObject.GetComponent<Rigidbody>().constraints != RigidbodyConstraints.FreezeRotation)
                 heldObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
@@ -42,8 +45,9 @@ public class GrabObject : MonoBehaviour
         }
 		else
 		{
-			heldObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-			itemGrabbable = false;
+            if (heldObject)
+			    heldObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            objectGrabbable = false;
 			heldObject = null; 
 		}
     }
@@ -57,13 +61,13 @@ public class GrabObject : MonoBehaviour
         {
             if (hit.rigidbody /*&& hit.rigidbody.gameObject.name == "hammer"*/)
             {
-                itemGrabbable = true;
+                objectGrabbable = true;
 				heldObject = hit.transform.gameObject; 
             }
         }
         else
         {
-            itemGrabbable = false;
+            objectGrabbable = false;
 			heldObject = null; 
         }
     }

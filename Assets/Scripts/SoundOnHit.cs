@@ -6,8 +6,7 @@ public class SoundOnHit : MonoBehaviour
 {
 
     public AudioClip soundOnHit;
-    public float minPitch = 0.8f;
-    public float maxPitch = 1.2f;
+    public float pitchAdjust = 1f;
     public float volume = 1f;
 	float nextSoundTime=0; // can't play sounds if before this time
 
@@ -25,7 +24,7 @@ public class SoundOnHit : MonoBehaviour
 			audioSource.clip = soundOnHit;
 
 
-			//audioSource.pitch = Random.Range(minPitch, maxPitch);
+			audioSource.pitch = pitchAdjust;
 			audioSource.volume = volume;
 			audioSource.Play();
 			
@@ -43,8 +42,8 @@ public class SoundOnHit : MonoBehaviour
 			audioSource = SVUtilities.SetOrAddAudioSource(gameObject);
 			audioSource.clip = soundOnHit;
 
-			//audioSource.pitch = Random.Range(minPitch, maxPitch);
-			audioSource.volume = volume;
+            audioSource.pitch = pitchAdjust;
+            audioSource.volume = volume;
 			audioSource.Play();
 			
 			// write down when we will be finished:
