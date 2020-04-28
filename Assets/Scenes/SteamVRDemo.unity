@@ -925,7 +925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundOnHit: {fileID: 8300000, guid: 3d29689402d77f846be117ddb01c1ab4, type: 3}
   pitchAdjust: 1
-  volume: 1
+  volume: 0.5
 --- !u!23 &541592203
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1446,7 +1446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundOnHit: {fileID: 8300000, guid: e8f5e3fe1ff3c664bbdbbc39943ac828, type: 3}
   pitchAdjust: 1
-  volume: 1
+  volume: 0.5
 --- !u!65 &853288201
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2221,7 +2221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundOnHit: {fileID: 8300000, guid: 99b6a3861023d2042a7fe490c69e79bd, type: 3}
   pitchAdjust: 1
-  volume: 1
+  volume: 0.5
 --- !u!65 &1182489605
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2826,8 +2826,8 @@ MonoBehaviour:
   drumset: {fileID: 194635879}
   timer: 0
   rockStartTime: 5
-  xylophoneStartTime: 15
-  shakerStartTime: 30
+  xylophoneStartTime: 30
+  shakerStartTime: 15
   drumStartTime: 45
   songStartTime: 45
 --- !u!82 &1550131918
@@ -3768,7 +3768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundOnHit: {fileID: 8300000, guid: 65835a4923a4d80499ba20bc231a913c, type: 3}
   pitchAdjust: 1
-  volume: 1
+  volume: 0.5
 --- !u!65 &1739387083
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3876,7 +3876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundOnHit: {fileID: 8300000, guid: 1d0e5169b7d8ed84f9cc39981184a871, type: 3}
   pitchAdjust: 1
-  volume: 1
+  volume: 0.5
 --- !u!65 &1754137919
 BoxCollider:
   m_ObjectHideFlags: 0
