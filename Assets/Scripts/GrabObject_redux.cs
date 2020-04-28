@@ -32,6 +32,10 @@ public class GrabObject_redux : MonoBehaviour
             Vector3 targetPoint = transform.position;
             targetPoint += Camera.main.transform.forward * mPointDistance;
             targetPoint += Camera.main.transform.up * mPointHeight;
+            if (Input.GetMouseButton(0))
+            {
+                targetPoint.y -= 0.3f;
+            }
             Vector3 force = targetPoint - heldObject.transform.position;
 
             heldObject.GetComponent<Rigidbody>().velocity = force.normalized * heldObject.GetComponent<Rigidbody>().velocity.magnitude;
@@ -50,17 +54,6 @@ public class GrabObject_redux : MonoBehaviour
             objectGrabbable = false;
 			heldObject = null; 
 		}
-
-	if (objectGrabbable && Input.GetMouseButton(0))
-        {
-		if (heldObject.GetComponent<Rigidbody>().constraints == RigidbodyConstraints.FreezeRotation)
-                	heldObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-	
-		heldObject.GetComponent<Rigidbody>().AddTorque(Vector3.up * 1000f);
-
-		heldObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-	}
-
     }
 
     void TryGrab()

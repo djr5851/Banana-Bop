@@ -18,7 +18,7 @@ public class SoundOnHit : MonoBehaviour
 
     private void OnTriggerStay(){
 
-		if (Input.GetKey (KeyCode.E) && Time.time>=nextSoundTime) {
+		if (Input.GetKey (KeyCode.Q) && Time.time>=nextSoundTime) {
              
 			audioSource = SVUtilities.SetOrAddAudioSource(gameObject);
 			audioSource.clip = soundOnHit;
