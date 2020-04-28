@@ -15,6 +15,7 @@ public class InstrumentProgression : MonoBehaviour
     public float xylophoneStartTime;
     public float shakerStartTime;
     public float drumStartTime;
+    public float songStartTime;
 
     void Start()
     {
@@ -25,7 +26,12 @@ public class InstrumentProgression : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= rockStartTime)
+        
+	if (timer >= songStartTime && timer <= songStartTime + 2)
+        {
+            GetComponent<AudioSource>().Play();
+        }
+	if (timer >= rockStartTime)
         {
             stick.SetActive(true);
             rock.SetActive(true);

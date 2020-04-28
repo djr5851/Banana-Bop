@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GrabObject : MonoBehaviour
 {
-    public float mCorrectionForce = 50.0f;
-    public float mPointDistance = 1.0f;
+    public float mCorrectionForce = 10000.0f;
+    public float mPointDistance = 1.2f;
     public float mPointHeight = 0.1f;
     public GameObject heldObject;
     int layerMask;
