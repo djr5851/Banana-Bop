@@ -4,34 +4,35 @@ using UnityEngine;
 
 public class Shaker : MonoBehaviour
 {
-    public bool veloityExceeded;
     public float velocity;
-    private Vector3 previous;
+    private Vector3 posPrev;
+    private float velPrev;
+    public float acceleration;
+    public GameObject test;
     // Start is called before the first frame update
     void Start()
     {
-        previous = transform.position;
-        veloityExceeded = false;
-
+        posPrev = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        velocity = ((transform.position - previous).magnitude) / Time.deltaTime;
-        previous = transform.position;
-        if (!veloityExceeded)
+        velocity = ((transform.position - posPrev).magnitude) / Time.deltaTime;
+        posPrev = transform.position;
+
+        acceleration = (velocity - velPrev) / Time.deltaTime;
+        velPrev = velocity;
+
+        if (velocity > 5.0f)
         {
-            if (velocity > 50)
-                veloityExceeded = true;
+            test.SetActive(true);
+            //if (GetComponent<AudioSource>().isPlaying == false)
+                GetComponent<AudioSource>().Play();
         }
         else
         {
-            if (velocity <= 1)
-            {
-                GetComponent<AudioSource>().Play();
-                veloityExceeded = false;
-            }
+            test.SetActive(false);
         }
     }
 }
