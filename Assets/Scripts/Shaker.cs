@@ -24,11 +24,13 @@ public class Shaker : MonoBehaviour
         acceleration = (velocity - velPrev) / Time.deltaTime;
         velPrev = velocity;
 
-        if (velocity > 5.0f)
+        if (velocity > 1.0f)
         {
-            test.SetActive(true);
-            //if (GetComponent<AudioSource>().isPlaying == false)
+            if (GetComponent<AudioSource>().isPlaying == false) 
+            {
+                test.SetActive(true);
                 GetComponent<AudioSource>().Play();
+            }
         }
         else
         {

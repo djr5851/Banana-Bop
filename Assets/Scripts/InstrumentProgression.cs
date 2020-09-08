@@ -33,13 +33,11 @@ public class InstrumentProgression : MonoBehaviour
         }
 	if (timer >= rockStartTime)
         {
-            stick.SetActive(true);
-            rock.SetActive(true);
+            rock.transform.parent = null;
         }
         if (timer >= xylophoneStartTime)
         {
-            mallet.SetActive(true);
-            xylophone.SetActive(true);
+            xylophone.transform.parent = null;
         }
         if (timer >= shakerStartTime)
         {
