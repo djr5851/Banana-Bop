@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     Color fogColor;
     float colorLerp;
     public Canvas canvas;
+    public GameObject controllerLeft;
+    public GameObject controllerRight;
+    public GameObject sceneObjects;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +25,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q)) StartGame();
     }
 
     IEnumerator FadeIn()
@@ -39,5 +43,8 @@ public class GameManager : MonoBehaviour
     public void StartGame() 
     {
         StartCoroutine(FadeIn());
+        sceneObjects.SetActive(true);
+        controllerLeft.GetComponent<SteamVR_LaserPointer>().thickness = 0;
+        controllerRight.GetComponent<SteamVR_LaserPointer>().thickness = 0;
     }
 }

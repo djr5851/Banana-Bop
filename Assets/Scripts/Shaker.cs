@@ -28,7 +28,7 @@ public class Shaker : MonoBehaviour
         {
             if (GetComponent<AudioSource>().isPlaying == false) 
             {
-                test.SetActive(true);
+                //test.SetActive(true);
                 GetComponent<AudioSource>().Play();
             }
         }
