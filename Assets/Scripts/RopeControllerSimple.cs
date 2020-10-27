@@ -18,6 +18,8 @@ public class RopeControllerSimple : MonoBehaviour
     //A list with all rope sections
     public List<Vector3> allRopeSections = new List<Vector3>();
 
+    public float ropeWidth = 0.1f;
+
     //Rope data
     private float ropeLength = 1f;
     private float minRopeLength = 1f;
@@ -100,9 +102,6 @@ public class RopeControllerSimple : MonoBehaviour
     //Display the rope with a line renderer
     private void DisplayRope()
     {
-        //This is not the actual width, but the width use so we can see the rope
-        float ropeWidth = 0.2f;
-
         lineRenderer.startWidth = ropeWidth;
         lineRenderer.endWidth = ropeWidth;
 
