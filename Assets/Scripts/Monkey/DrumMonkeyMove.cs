@@ -6,6 +6,9 @@ public class DrumMonkeyMove : MonoBehaviour
 {
     public float speed;
     public GameObject monky;
+    public Transform drumsetPos;
+    public Transform monkyDancePos;
+    private bool monkyClose = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +19,13 @@ public class DrumMonkeyMove : MonoBehaviour
     void FixedUpdate()
     {
         gameObject.transform.Translate(-speed, 0, 0);
-        if(gameObject.transform.position.x <= 0.86f && gameObject.transform.position.z <= 2.91f)
+        if (!monkyClose && gameObject.transform.position.x <= monkyDancePos.position.x && gameObject.transform.position.z <= monkyDancePos.position.z)
         {
+            monkyClose = true;
             monky.GetComponent<Animator>().SetTrigger("dance");
+        }
+        if (monkyClose && gameObject.transform.position.x <= drumsetPos.position.x && gameObject.transform.position.z <= drumsetPos.position.z)
+        {
             this.enabled = false;
         }
     }
