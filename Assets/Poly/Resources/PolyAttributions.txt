@@ -5,3 +5,9 @@ Author: Monkey Town
 URL: https://poly.google.com/view/8eG42_VQwGM
 License: Creative Commons CC-BY
 https://creativecommons.org/licenses/by/3.0/legalcode
+
+Title: stump 2
+Author: Monkey Town
+URL: https://poly.google.com/view/0CKDvjdNNDU
+License: Creative Commons CC-BY
+https://creativecommons.org/licenses/by/3.0/legalcode
