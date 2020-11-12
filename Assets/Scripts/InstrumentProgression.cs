@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class InstrumentProgression : MonoBehaviour
 {
-    public GameObject stick;
     public GameObject rock;
-    public GameObject mallet;
-    public GameObject xylophone;
+    public GameObject drum;
     public GameObject shaker;
     public GameObject drumset;
     public float timer;
     public float rockStartTime;
-    public float xylophoneStartTime;
-    public float shakerStartTime;
     public float drumStartTime;
+    public float shakerStartTime;
+    public float drumSetStartTime;
+    public float xylophoneStartTime;
     public float songStartTime;
 
     void Start()
@@ -27,25 +26,33 @@ public class InstrumentProgression : MonoBehaviour
     {
         timer += Time.deltaTime;
         
-	if (timer >= songStartTime && timer <= songStartTime + 2)
+        if (timer >= songStartTime && timer <= songStartTime + 2)
         {
-            GetComponent<AudioSource>().Play();
+            // GetComponent<AudioSource>().Play();
         }
-	if (timer >= rockStartTime)
+        if (timer >= rockStartTime)
         {
-            rock.transform.parent = null;
+            rock.SetActive(true);
         }
-        if (timer >= xylophoneStartTime)
+        if (timer >= drumStartTime)
         {
-            xylophone.transform.parent = null;
+            drum.SetActive(true);
         }
         if (timer >= shakerStartTime)
         {
             shaker.SetActive(true);
         }
-        if (timer >= drumStartTime)
+        if (timer >= drumSetStartTime)
         {
             drumset.SetActive(true);
+        }
+        if (timer >= xylophoneStartTime)
+        {
+            GetComponent<MonkeySwing>().enabled = true;
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            timer = 99999999f;
         }
     }
 }
