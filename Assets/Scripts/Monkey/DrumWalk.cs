@@ -46,14 +46,14 @@ public class DrumWalk : MonoBehaviour
             moving = false;
             timer += Time.deltaTime;
         }
-        if (timer >= 0.3f)
+        if (timer >= 0.7f)
         {
             dropped = true;
             drum.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         }
-        if (timer >= 1.0f && timer <= 10.0f)
+        if (timer >= 1.0f && timer <= 8.0f)
         {
-            monky.transform.Translate(-0.002f, 0f, -0.002f);
+            monky.transform.Translate(-0.001f, 0f, -0.001f);
         }
     }
 }

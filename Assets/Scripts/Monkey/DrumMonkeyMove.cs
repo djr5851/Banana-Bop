@@ -8,11 +8,14 @@ public class DrumMonkeyMove : MonoBehaviour
     public GameObject monky;
     public Transform drumsetPos;
     public Transform monkyDancePos;
+    public GameObject leftStick;
+    public GameObject rightStick;
     private bool monkyClose = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        leftStick.SetActive(true);
+        rightStick.SetActive(true);
     }
 
     // Update is called once per frame
@@ -26,6 +29,8 @@ public class DrumMonkeyMove : MonoBehaviour
         }
         if (monkyClose && gameObject.transform.position.x <= drumsetPos.position.x && gameObject.transform.position.z <= drumsetPos.position.z)
         {
+            leftStick.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            rightStick.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             this.enabled = false;
         }
     }
