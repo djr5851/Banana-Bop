@@ -7,6 +7,9 @@ public class MonkeySwing : MonoBehaviour
     public GameObject monkey;
     public GameObject rope;
     public GameObject xylophone;
+    public GameObject xylophoneColliders;
+    public GameObject leftMallet;
+    public GameObject rightMallet;
     private bool hasXylophone = false;
     private bool swinging = false;
     // Start is called before the first frame update
@@ -27,6 +30,9 @@ public class MonkeySwing : MonoBehaviour
             {
                 xylophone.transform.parent = null;
                 xylophone.transform.position = new Vector3(-2.1407f, 0.9829998f, 0.030527f);
+                xylophoneColliders.SetActive(true);
+                leftMallet.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                rightMallet.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 hasXylophone = false;
             }
         }

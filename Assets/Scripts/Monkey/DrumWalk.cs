@@ -35,7 +35,7 @@ public class DrumWalk : MonoBehaviour
             drumPos = leftHand.position;
             drumPos.x += xOffset;
             drumPos.z += zOffset;
-            transform.Translate(0.01f, 0f, 0.01f);
+            transform.Translate(0.005f, 0f, 0.005f);
         }
         if (transform.position.x <= destination.position.x + 1.0f && transform.position.z >= destination.position.z - 1.0f) 
         {
