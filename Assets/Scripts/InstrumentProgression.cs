@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class InstrumentProgression : MonoBehaviour
 {
+    public bool counting = false;
+    public bool scaling = false;
+    public GameObject title;
     public GameObject rock;
     public GameObject drum;
     public GameObject shaker;
     public GameObject drumset;
+    private float rate = 0.05f;
     public float timer;
     public float rockStartTime;
     public float drumStartTime;
@@ -24,7 +28,18 @@ public class InstrumentProgression : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+        if (scaling)
+        {
+            rate += 0.01f;
+            title.transform.Translate(0.0f, 0.005f, 0.0f);
+            title.transform.localScale = Vector3.Lerp(title.transform.localScale, Vector3.zero, rate * Time.deltaTime);
+            if (title.transform.localScale.x <= 0.001f) scaling = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            StartGame();
+        }
+        if (counting) timer += Time.deltaTime;
         
         if (timer >= songStartTime && timer <= songStartTime + 2)
         {
@@ -54,5 +69,16 @@ public class InstrumentProgression : MonoBehaviour
         {
             timer = 99999999f;
         }
+    }
+
+    public void StartGame()
+    {
+        counting = true;
+        scaling = true;
+    }
+
+    public void EndGame()
+    {
+        Application.Quit();
     }
 }
