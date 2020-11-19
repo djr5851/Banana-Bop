@@ -12,6 +12,7 @@ public class Splosion : MonoBehaviour
     public GameObject mikey;
     public GameObject michaelSplosion;
     public GameObject michael;
+    public GameObject sunlight;
     private bool counting = false;
     private float timer = 0.0f;
     // Start is called before the first frame update
