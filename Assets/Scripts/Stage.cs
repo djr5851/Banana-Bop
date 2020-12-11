@@ -15,10 +15,17 @@ public class Stage : MonoBehaviour
     public GameObject ps;
     public GameObject stage;
     public GameObject ah;
+    public AudioSource bop;
+    public AudioSource soundfx;
+    public AudioClip fireball;
+    public AudioClip fire;
+    public AudioClip whoosh;
     private bool counting = false;
     public float timer = 0.0f;
     private float brightness = 1.0f;
     private bool disabling = true;
+    private bool firePlayed = false;
+    private bool startedFading = false;
 
     // Start is called before the first frame update
     void Start()
@@ -31,18 +38,10 @@ public class Stage : MonoBehaviour
         if (counting)
         {
             timer += Time.deltaTime;
-            stageLight1.transform.Rotate(oscillate(timer, 2, 0.1f), 0, 0);
-            stageLight2.transform.Rotate(oscillate(timer, 2, -0.1f), 0, 0);
+            stageLight1.transform.Rotate(oscillate(timer, 2, 0.07f), 0, 0);
+            stageLight2.transform.Rotate(oscillate(timer, 2, -0.07f), 0, 0);
         }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            StartCoroutine(Fade());
-            // noahSplosion.SetActive(true);
-            // conorSplosion.SetActive(true);
-            // mikeySplosion.SetActive(true);
-            // michaelSplosion.SetActive(true);
-            counting = true;
-        }
+        if (Input.GetKeyDown(KeyCode.F)) StartShow();
         if (counting)
         {
             ps.transform.Translate(0f, 0.01f, 0f);
@@ -51,6 +50,12 @@ public class Stage : MonoBehaviour
         if (timer >= 17.0f)
         {
             ah.SetActive(true);
+            if (!firePlayed)
+            {
+                soundfx.PlayOneShot(fireball);
+                soundfx.PlayOneShot(fire);
+                firePlayed = true;
+            }
             fireLight1.SetActive(true);
             fireLight2.SetActive(true);
             fireLight3.SetActive(true);
@@ -67,14 +72,15 @@ public class Stage : MonoBehaviour
             fireLight3.GetComponent<flicker>().Stop();
             fireLight4.GetComponent<flicker>().Stop();
         }
+        if (timer >= 183.0f)
+        {
+            if (!startedFading)
+            {
+                GetComponent<FadeToCredits>().Fade();
+                startedFading = true;
+            }
+        }
         
-        // if (timer >= 3.0f)
-        // {
-        //     noahSplosion.GetComponent<ParticleSystem>().Stop();
-        //     conorSplosion.GetComponent<ParticleSystem>().Stop();
-        //     mikeySplosion.GetComponent<ParticleSystem>().Stop();
-        //     michaelSplosion.GetComponent<ParticleSystem>().Stop();
-        // }
     }
 
     float oscillate(float time, float speed, float scale)
@@ -94,9 +100,12 @@ public class Stage : MonoBehaviour
         }
     }
 
-    public void StartGame() 
+    public void StartShow() 
     {
-        
+        StartCoroutine(Fade());
+        soundfx.PlayOneShot(whoosh);
+        bop.Play();
+        counting = true;
     }
 }
 

@@ -7,7 +7,7 @@ public class SoundOnHit : MonoBehaviour
 
     public AudioClip soundOnHit;
     public float pitchAdjust = 1f;
-    public float volume = 1f;
+    public float gain;
 	float nextSoundTime=0; // can't play sounds if before this time
 
     private bool inHand = false;
@@ -25,11 +25,11 @@ public class SoundOnHit : MonoBehaviour
 
 
 			audioSource.pitch = pitchAdjust;
-			audioSource.volume = volume;
+			audioSource.volume = gain;
 			audioSource.Play();
 			
 			// write down when we will be finished:
-			nextSoundTime = Time.time + .15f;
+			nextSoundTime = Time.time + .01f;
 			//Debug.Log(soundOnHit.length);
 				
 		}
@@ -43,6 +43,8 @@ public class SoundOnHit : MonoBehaviour
 			audioSource.clip = soundOnHit;
 
             audioSource.pitch = pitchAdjust;
+			float volume = collision.gameObject.GetComponent<Rigidbody>().velocity.magnitude / 3f + gain;
+			if (volume > 1f) volume = 1f;
             audioSource.volume = volume;
 			audioSource.Play();
 			
